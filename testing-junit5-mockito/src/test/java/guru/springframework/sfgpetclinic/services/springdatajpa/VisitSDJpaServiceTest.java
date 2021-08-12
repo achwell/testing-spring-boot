@@ -13,6 +13,8 @@ import java.util.*;
 import static java.time.LocalDate.now;
 import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -26,20 +28,26 @@ class VisitSDJpaServiceTest {
 
     @Test
     void findAll() {
+        //given
         Set<Visit> expected = new HashSet<>(asList(new Visit(1L, now()), new Visit(2L, now())));
-        when(visitRepository.findAll()).thenReturn(expected);
+        given(visitRepository.findAll()).willReturn(expected);
+        //when
         Set<Visit> visits = testSubject.findAll();
-        verify(visitRepository, atMostOnce()).findAll();
+        //then
+        then(visitRepository).should(atMostOnce()).findAll();
         assertNotNull(visits);
         assertEquals(expected.size(), visits.size());
     }
 
     @Test
     void findById() {
+        //given
         Visit expected = new Visit(1L, now());
-        when(visitRepository.findById(1L)).thenReturn(Optional.of(expected));
+        given(visitRepository.findById(1L)).willReturn(Optional.of(expected));
+        //when
         Visit visit = testSubject.findById(1L);
-        verify(visitRepository, atMostOnce()).findById(anyLong());
+        //then
+        then(visitRepository).should(atMostOnce()).findById(anyLong());
         assertNotNull(visit);
         assertEquals(expected.getId(), visit.getId());
         assertEquals(expected.getDate(), visit.getDate());
@@ -47,10 +55,13 @@ class VisitSDJpaServiceTest {
 
     @Test
     void save() {
+        //given
         Visit expected = new Visit(1L, now());
-        when(visitRepository.save(expected)).thenReturn(expected);
+        given(visitRepository.save(expected)).willReturn(expected);
+        //when
         Visit visit = testSubject.save(expected);
-        verify(visitRepository, atMostOnce()).save(any(Visit.class));
+        //then
+        then(visitRepository).should(atMostOnce()).save(any(Visit.class));
         assertNotNull(visit);
         assertEquals(expected.getId(), visit.getId());
         assertEquals(expected.getDate(), visit.getDate());
@@ -58,14 +69,21 @@ class VisitSDJpaServiceTest {
 
     @Test
     void delete() {
+        //given
         Visit visit = new Visit();
+        //when
         testSubject.delete(visit);
-        verify(visitRepository).delete(any(Visit.class));
+        //then
+        then(visitRepository).should().delete(any(Visit.class));
     }
 
     @Test
     void deleteById() {
-        testSubject.deleteById(1L);
-        verify(visitRepository, times(1)).deleteById(1L);
+        //given
+        Long id = 1L;
+        //when
+        testSubject.deleteById(id);
+        //then
+        then(visitRepository).should(times(1)).deleteById(id);
     }
 }

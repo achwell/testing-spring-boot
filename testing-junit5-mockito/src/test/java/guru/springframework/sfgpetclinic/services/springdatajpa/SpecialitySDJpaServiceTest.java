@@ -12,6 +12,8 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -25,49 +27,72 @@ class SpecialitySDJpaServiceTest {
 
     @Test
     void testFindById() {
+        //given
         Speciality expected = new Speciality(1L, "Speciality");
-        when(specialtyRepository.findById(1L)).thenReturn(Optional.of(expected));
+        given(specialtyRepository.findById(1L)).willReturn(Optional.of(expected));
+
+        //when
         Speciality speciality = testSubject.findById(1L);
 
+        //then
         assertNotNull(speciality);
         assertEquals(expected, speciality);
-
-        verify(specialtyRepository, atMostOnce()).findById(anyLong());
+        then(specialtyRepository).should().findById(1L);
+        then(specialtyRepository).shouldHaveNoMoreInteractions();
     }
 
     @Test
     void deleteById() {
-        testSubject.deleteById(1L);
-        testSubject.deleteById(1L);
-        verify(specialtyRepository, times(2)).deleteById(1L);
+        //given
+        Long id = 1L;
+        //when
+        testSubject.deleteById(id);
+        testSubject.deleteById(id);
+        //then
+        then(specialtyRepository).should(times(2)).deleteById(id);
     }
 
     @Test
     void deleteByIdAtLeast() {
-        testSubject.deleteById(1L);
-        testSubject.deleteById(1L);
-        verify(specialtyRepository, atLeastOnce()).deleteById(1L);
+        //given
+        Long id = 1L;
+        //when
+        testSubject.deleteById(id);
+        testSubject.deleteById(id);
+        //then
+        then(specialtyRepository).should(atLeastOnce()).deleteById(id);
     }
 
     @Test
     void deleteByIdAtMost() {
-        testSubject.deleteById(1L);
-        testSubject.deleteById(1L);
-        verify(specialtyRepository, atMost(5)).deleteById(1L);
+        //given
+        Long id = 1L;
+        //when
+        testSubject.deleteById(id);
+        testSubject.deleteById(id);
+        //then
+        then(specialtyRepository).should(atMost(5)).deleteById(id);
     }
 
     @Test
     void deleteByIdNever() {
-        testSubject.deleteById(1L);
-        testSubject.deleteById(1L);
-        verify(specialtyRepository, atLeastOnce()).deleteById(1L);
-        verify(specialtyRepository, never()).deleteById(5L);
+        //given
+        Long id = 1L;
+        //when
+        testSubject.deleteById(id);
+        testSubject.deleteById(id);
+        //then
+        then(specialtyRepository).should(atLeastOnce()).deleteById(id);
+        then(specialtyRepository).should(never()).deleteById(5L);
     }
 
     @Test
     void testDelete() {
+        //given
         Speciality speciality = new Speciality();
+        //when
         testSubject.delete(speciality);
-        verify(specialtyRepository).delete(any(Speciality.class));
+        //then
+        then(specialtyRepository).should().delete(any(Speciality.class));
     }
 }
