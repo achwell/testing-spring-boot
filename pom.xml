@@ -12,6 +12,6 @@
         <module>tdd-by-example</module>
         <module>intro-junit5</module>
         <module>testing-java-junit5</module>
-        <module>junit4-legacy-app</module>
+        <module>testing-junit5-mockito</module>
     </modules>
 </project>
