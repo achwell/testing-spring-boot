@@ -13,5 +13,6 @@
         <module>intro-junit5</module>
         <module>testing-java-junit5</module>
         <module>testing-junit5-mockito</module>
+        <module>tb2g-testing-spring</module>
     </modules>
 </project>
