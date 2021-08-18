@@ -8,7 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>junit4-legacy-app</name>
+	<name>testing-junit5-mockito</name>
 	<description>Recipe Application - JUnit 4 Example</description>
 
 	<parent>

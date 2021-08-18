@@ -18,15 +18,6 @@ npm-debug.log.*
 ######################
 .sass-cache/
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
 ### IntelliJ IDEA ###
 .idea
 *.iws
@@ -63,7 +54,10 @@ local.properties
 .settings/
 .loadpath
 .factorypath
-/src/main/resources/rebel.xml
+.apt_generated
+.settings
+.springBeans
+.sts4-cache
 
 # External tool builders
 .externalToolBuilders/**
@@ -95,8 +89,8 @@ local.properties
 ######################
 # Maven
 ######################
-/log/
-/target/
+*/log/
+*/target/
 
 ######################
 # Gradle
