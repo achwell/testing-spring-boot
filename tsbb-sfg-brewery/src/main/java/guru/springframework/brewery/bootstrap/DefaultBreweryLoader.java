@@ -18,13 +18,14 @@ package guru.springframework.brewery.bootstrap;
 
 import guru.springframework.brewery.domain.*;
 import guru.springframework.brewery.repositories.*;
-import guru.springframework.brewery.web.model.BeerStyleEnum;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
+
+import static guru.springframework.brewery.web.model.BeerStyleEnum.*;
 
 /**
  * Created by jt on 2019-01-26.
@@ -62,7 +63,7 @@ public class DefaultBreweryLoader implements CommandLineRunner {
 
             Beer mangoBobs = Beer.builder()
                     .beerName("Mango Bobs")
-                    .beerStyle(BeerStyleEnum.IPA)
+                    .beerStyle(IPA)
                     .minOnHand(12)
                     .quantityToBrew(200)
                     .upc(337010000001L)
@@ -77,7 +78,7 @@ public class DefaultBreweryLoader implements CommandLineRunner {
 
             Beer galaxyCat = Beer.builder()
                     .beerName("Galaxy Cat")
-                    .beerStyle(BeerStyleEnum.PALE_ALE)
+                    .beerStyle(PALE_ALE)
                     .minOnHand(12)
                     .quantityToBrew(200)
                     .upc(337010000002L)
@@ -92,7 +93,7 @@ public class DefaultBreweryLoader implements CommandLineRunner {
 
             Beer pinball = Beer.builder()
                     .beerName("Pinball Porter")
-                    .beerStyle(BeerStyleEnum.PORTER)
+                    .beerStyle(PORTER)
                     .minOnHand(12)
                     .quantityToBrew(200)
                     .upc(337010000003L)
