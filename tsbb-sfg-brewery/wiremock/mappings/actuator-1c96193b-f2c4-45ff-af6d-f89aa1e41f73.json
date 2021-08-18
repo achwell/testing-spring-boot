@@ -1,0 +1,20 @@
+{
+  "id" : "1c96193b-f2c4-45ff-af6d-f89aa1e41f73",
+  "name" : "actuator",
+  "request" : {
+    "url" : "/actuator",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "{\"_links\":{\"self\":{\"href\":\"http://localhost:8081/actuator\",\"templated\":false},\"health-path\":{\"href\":\"http://localhost:8081/actuator/health/{*path}\",\"templated\":true},\"health\":{\"href\":\"http://localhost:8081/actuator/health\",\"templated\":false}}}",
+    "headers" : {
+      "Content-Type" : "application/vnd.spring-boot.actuator.v3+json",
+      "Date" : "Wed, 18 Aug 2021 07:09:05 GMT",
+      "Keep-Alive" : "timeout=60"
+    }
+  },
+  "uuid" : "1c96193b-f2c4-45ff-af6d-f89aa1e41f73",
+  "persistent" : true,
+  "insertionIndex" : 1
+}
