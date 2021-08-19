@@ -15,5 +15,6 @@
         <module>testing-junit5-mockito</module>
         <module>tb2g-testing-spring</module>
         <module>sfg-restdocs-example</module>
+	<module>brewery-rest-docs</module>
     </modules>
 </project>
